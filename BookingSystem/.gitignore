@@ -1,0 +1,28 @@
+﻿# Byggmappar
+bin/
+obj/
+
+# Användarspecifika filer
+*.user
+*.suo
+
+# Visual Studio och IDE-filer
+.vscode/
+.idea/
+*.DotSettings
+
+# Paket och cache
+packages/
+.nuget/
+*.nupkg
+*.snupkg
+
+# Testresultat
+TestResults/
+*.coverage
+*.coveragexml
+
+# Miljöspecifika inställningar
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
