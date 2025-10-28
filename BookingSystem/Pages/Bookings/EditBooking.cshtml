@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@model BookingSystem.Pages.Bookings.EditBookingModel
+@{
+	ViewData["Title"] = "Omboka tid";
+}
+
+<h1>Omboka tid</h1>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<partial name="_ValidationScriptsPartial" />
+<form method="post">
+	<input type="hidden" asp-for="Booking.Id" />
+	
+	<div>
+		<label>Tid:</label>
+		<input type="datetime-local" asp-for="Booking.TimeSlot" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+	</div>
+	<div>
+		<label>Tjänst:</label>
+		<input type="text" asp-for="Booking.ServiceType" />
+	</div>
+
+	<button type="submit">Uppdatera bokningen</button>
+</form>

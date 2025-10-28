@@ -1,0 +1,19 @@
+﻿@page
+@model BookingSystem.Pages.Bookings.CreateBookingModel
+@{
+	ViewData["Title"] = "Boka tid";
+}
+
+<h1>Boka tid</h1>
+
+<form method="post">
+	<div>
+		<laber>Tid:</laber>
+		<input type="datetime-local" asp-for="Booking.TimeSlot" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"/>
+	</div>
+	<div>
+		<label>Tjänst:</label>
+		<input type="text" asp-for="Booking.ServiceType" />
+	</div>
+	<button type="submit">Boka</button>
+</form>

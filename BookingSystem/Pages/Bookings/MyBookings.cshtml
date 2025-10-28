@@ -1,0 +1,61 @@
+﻿@page
+@model BookingSystem.Pages.Bookings.MyBookingsModel
+@{
+    ViewData["Title"] = "Mina bokningar";
+}
+
+<h1>Mina bokningar</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tid</th>
+            <th>Tjänst</th>
+            <th>Status</th>
+            <th>Åtgärder</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model.MyBookings.Count > 0)
+        {
+            @foreach (var booking in Model.MyBookings)
+            {
+                <tr>
+                    <td>@booking.TimeSlot</td>
+                    <td>@booking.ServiceType</td>
+                    <td>@(booking.IsConfirmed ? "Bekräftad" : "Ej bekräftad")</td>
+                    <td>
+                        @* Om bokningen är inte bekräftad visas knappen för att bekräfta och förvinner när användare har bekräftat den *@
+                        @if (!booking.IsConfirmed)
+                        {
+                            <form method="post" asp-page-handler="Confirm">
+                                <input type="hidden" name="bookingId" value="@booking.Id" />
+                                <button type="submit">Bekräfta</button>
+                            </form>
+                        }
+
+                        @* Omboka knappen *@
+                        <form method="get" asp-page="/Bookings/EditBooking" asp-route-id="@booking.Id">
+                            <button type="submit">Omboka</button>
+                        </form>
+
+                        @* Avboka knappen *@
+                        <form method="post" asp-page-handler="Cancel">
+                            <input type="hidden" name="bookingId" value="@booking.Id" />
+                            <button type="submit">Avboka</button>
+                        </form>
+
+
+                    </td>
+                </tr>
+            }
+        } else
+        {
+            <tr>
+                <td colspan="4">Du har inga aktuella bokningar</td>
+            </tr>
+        }
+        
+    </tbody>
+    
+</table>
